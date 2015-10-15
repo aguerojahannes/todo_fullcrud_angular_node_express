@@ -1,0 +1,22 @@
+<div ng-controller="HomeController as vm">
+	<br>
+	<div class="well container form-inline" style="text-align:center;font-size:26px">
+		ToDo
+		<input class="form-control" ng-model="vm.newToDo.title" placeholder="Title">
+		<input class="form-control" ng-model="vm.newToDo.body" placeholder="Body">
+		<button type="button" class="btn btn-sm" ng-click="vm.addToDo()">Submit</button>
+	</div>
+	<div flex layout="row" layout-align="center center" class="well container" ng-repeat="t in vm.todos track by $index">
+		<div flex="90">
+		<h3>Title: {{t.title}}</h3>
+		<h4>{{t.body}}</h4>
+		<h6>Created: {{ t.created | date:"short"}}</h6>
+		<h6>Completed: {{ t.completed | date:"short"}}</h6>
+	</div>
+	<div flex layout-align="center center">
+		<button class="btn btn-xs" style="color:black" ng-click="vm.completeToDo(t)" ng-show="!t.completed">Complete</button> <!-- if this todo.deleted in null, shos the complete button. else  show a button to uncomplete -->
+		<button class="btn btn-xs" style="color:black" ng-click="vm.uncompleteToDo(t)" ng-show="t.completed">Oops! Undo </button>  <!--  else  show a button to uncomplete -->
+		<button class="btn btn-xs" style="color:black" ng-click="vm.deleteToDo(t)">Delete</button>
+	</div>
+	</div>
+</div>
